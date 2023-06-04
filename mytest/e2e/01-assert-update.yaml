@@ -1,0 +1,37 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  namespace: default
+  name: test-foo
+  ownerReferences:
+  - apiVersion: samplecontroller.k8s.io/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Foo
+    name: test-foo
+spec:
+  template:
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+  replicas: 2
+status: 
+  availableReplicas: 2
+  readyReplicas: 2
+  replicas: 2
+  updatedReplicas: 2  
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  namespace: default
+  labels:
+    app: nginx
+    controller: test-foo
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+status:
+  phase: Running

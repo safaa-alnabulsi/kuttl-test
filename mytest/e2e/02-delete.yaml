@@ -1,0 +1,8 @@
+apiVersion: kuttl.dev/v1beta1
+kind: TestStep
+delete:
+# Delete a Pod with the specified name
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    name: test-foo

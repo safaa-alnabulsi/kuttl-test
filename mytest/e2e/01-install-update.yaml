@@ -1,0 +1,8 @@
+apiVersion: samplecontroller.k8s.io/v1alpha1
+kind: Foo
+metadata:
+  name: test-foo
+  namespace: default
+spec:
+  deploymentName: test-foo
+  replicas: 2
